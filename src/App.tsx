@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import HelloWorld from './components/EditableView';
+import ControlView from './components/EditableView/ControlView';
 
 function App() {
 
@@ -12,7 +12,7 @@ function App() {
   
   return (
     <div className="App">
-      <HelloWorld />
+      <ControlView />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <input type="text" onChange={(e) => setText(e.target.value)} />
