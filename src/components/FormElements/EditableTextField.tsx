@@ -1,4 +1,4 @@
-import { FormEvent, useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 
 export const EditableTextField = (props: any) => {
@@ -15,7 +15,7 @@ export const EditableTextField = (props: any) => {
     }
 
     useEffect(() => {
-        console.log('This is the userText: ', userText);
+        
     }, [userText, editMode]);
 
     return(

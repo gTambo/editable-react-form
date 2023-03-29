@@ -1,6 +1,6 @@
-import { EditModeView } from "./EditModeView";
-import StaticView from "./StaticView";
-import { useEffect, useState } from 'react';
+// import { EditModeView } from "./EditModeView";
+// import StaticView from "./StaticView";
+import { useState } from 'react';
 import { EditableTextField } from '../FormElements/EditableTextField';
 
 export default function ControlView() {
