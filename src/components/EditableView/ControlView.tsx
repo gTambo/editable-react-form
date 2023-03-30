@@ -31,24 +31,9 @@ export default function ControlView() {
 
     const submitAll = (e: React.FormEvent<HTMLElement>) => {
         e.preventDefault();
-        
-        
-        if(input1Ref.current?.value) {
-            console.log('updated userText1: ', input1Ref.current.value);
-            setUserText1(input1Ref.current.value); 
-        } else console.log('nothing changed...');
-
-        
-        if(input2Ref.current?.value) {
-            console.log('updated userText2: ', input2Ref.current.value);
-            setUserText2(input2Ref.current.value);
-        } else console.log('nothing changed...');
-        
-        if(input3Ref.current?.value) {
-            console.log('updated userText3: ', input3Ref.current.value);
-            setUserText3(input3Ref.current.value);
-        } else console.log('nothing changed...');
-        
+        input1Ref.current?.value && setUserText1(input1Ref.current.value); 
+        input2Ref.current?.value && setUserText2(input2Ref.current.value);
+        input3Ref.current?.value && setUserText3(input3Ref.current.value);
         editAllOff();
     }
 

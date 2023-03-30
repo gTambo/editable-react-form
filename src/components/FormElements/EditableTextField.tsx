@@ -1,15 +1,15 @@
-import { useEffect } from "react";
+import { ChangeEvent, FocusEvent, FormEvent, useEffect } from "react";
 
 
 export const EditableTextField = (props: any) => {
     const { editMode, setEditMode, userText, setUserText, inputRef } = props.inherited;
 
-    const updateText = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const updateText = (e: ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
         setUserText(e.currentTarget.value);
     }
 
-    const handleFocus = (e: React.ChangeEvent<HTMLDivElement>) => {
+    const handleFocus = (e: FocusEvent<HTMLDivElement, Element>) => {
         setEditMode(true);
         setUserText(e.currentTarget.textContent);
     }
@@ -19,7 +19,7 @@ export const EditableTextField = (props: any) => {
     //     // setEditMode(false);
     // }
 
-    const submit = (event: React.FormEvent<HTMLElement>) => {
+    const submit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setEditMode(false);
     }
