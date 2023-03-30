@@ -24,6 +24,11 @@ export const EditableTextField = (props: any) => {
         setEditMode(false);
     }
 
+    const handleKeyEvent = (e: any) => {
+        e.preventDefault();
+        if(e.key == 'ArrowRight') inputRef.current.value = inputRef.current.placeholder;
+    }
+
     useEffect(() => {
 
     }, [userText, editMode, inputRef]);
@@ -37,9 +42,9 @@ export const EditableTextField = (props: any) => {
                 <input ref={inputRef} 
                        autoFocus 
                        type="text"
-                    //    defaultValue={userText}
-                       placeholder={userText} 
+                       placeholder={userText}
                        onChange={e => updateText(e)} 
+                       onKeyUp={handleKeyEvent}
                     //    onBlur={e => handleBlur(e)} 
                        />
             </ form>
