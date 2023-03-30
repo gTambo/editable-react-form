@@ -11,16 +11,20 @@
 }
 
 input {
+    font-size: calc(10px + 2vmin);
+    font-family: inherit;
     color: aliceblue;
     background-color: #282c34;
     min-height: calc(10px + 2vmin);
-    width: 278px;
+    min-width: 30vw;
 }
 
 textarea {
+    font-size: calc(10px + 2vmin);
+    font-family: inherit;
     color: aliceblue;
     background-color: #282c34;
     min-height: 3vmin;
     max-height: fit-content;
-    width: 278px;
+    min-width: 35vw;
 }

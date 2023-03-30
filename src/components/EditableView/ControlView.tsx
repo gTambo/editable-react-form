@@ -10,9 +10,9 @@ export default function ControlView() {
     const [editMode2, setEditMode2] = useState(false);
     const [editMode3, setEditMode3] = useState(false);
     const [editAll, setEditAll] = useState<boolean>(false);
-    const [userText1, setUserText1] = useState<string>('This is some text');
-    const [userText2, setUserText2] = useState<string>('This is also some text');
-    const [userText3, setUserText3] = useState<string>('Is this some text?');
+    const [userText1, setUserText1] = useState<string>('Click here and type some text');
+    const [userText2, setUserText2] = useState<string>('Also click here and type some text');
+    const [userText3, setUserText3] = useState<string>('If you click here you can type a lot of text');
     const input1Ref = useRef<HTMLInputElement>(null);
     const input2Ref = useRef<HTMLInputElement>(null);
     const input3Ref = useRef<HTMLInputElement>(null);
@@ -62,13 +62,18 @@ export default function ControlView() {
     }
     ];
 
-    const handleBlur = (e: React.MouseEvent<HTMLDivElement>) => {
+    const handleInputBlur = (e: any) => {
         e.preventDefault();
-        editAllOff();
+        if (e.currentTarget === e.target) {
+            console.log('focused parenting', e.currentTarget);
+            editAllOff();
+        } 
+        e.stopPropagation();
     }
 
+
     return (
-        <div className='ControlContainer' id="control-container" onClick={handleBlur}>
+        <div className='ControlContainer' id="control-container" onClick={handleInputBlur}>
             <EditableTextField inherited={passable[0]} elIndex={0} />
             <EditableTextField inherited={passable[1]} elIndex={0} />
             <EditableTextArea inherited={passable[2]} elIndex={0} />
