@@ -66,9 +66,9 @@ export default function ControlView() {
             <EditableTextField inherited={passable[0]} elIndex={0} />
             <EditableTextField inherited={passable[1]} elIndex={0} />
             <EditableTextArea inherited={passable[2]} elIndex={0} />
-            <input type='button' value="Submit All" onClick={submitAll} />
-            { editAll ? <input type="button" value="Edit All - Off" onClick={editAllOff} />
-            : <input type="button" value="Edit All - On" onClick={editAllOn} /> }
+            <button type='button' value="Submit All" onClick={submitAll} >Submit All</button>
+            { editAll ? <button type="button" onClick={editAllOff} >Edit All - Off</button>
+            : <button type="button" onClick={editAllOn} >Edit All - On</button> }
         </div>    
     )
 }

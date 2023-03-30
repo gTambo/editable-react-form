@@ -1,0 +1,25 @@
+.editable-text {
+    border: .2vmin solid transparent;
+}
+
+.editable-text:hover {
+    border: 0.2vmin solid rgba(245, 245, 245, 0.481);
+    border-radius: 6px;
+    color: aquamarine;
+}
+
+input {
+    color: aliceblue;
+    background-color: #282c34;
+    height: calc(10px + 2vmin);
+    min-width: 278px;
+}
+
+textarea {
+    color: aliceblue;
+    background-color: #282c34;
+    min-height: 10vmin;
+    max-height: fit-content;
+    min-width: 278px;
+    width: inherit;
+}

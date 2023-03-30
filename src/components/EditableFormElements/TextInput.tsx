@@ -1,4 +1,5 @@
 import { ChangeEvent, FocusEvent, FormEvent, useEffect } from "react";
+import './EditableFormElements.css';
 
 
 export const EditableTextField = (props: any) => {
@@ -37,9 +38,10 @@ export const EditableTextField = (props: any) => {
         
             !editMode 
             ? 
-            <div tabIndex={props.elIndex} onFocus={e => handleFocus(e)} >{userText}</div>
+            <div className="editable-text" tabIndex={props.elIndex} onFocus={e => handleFocus(e)} >{userText}</div>
             : <form tabIndex={props.elIndex + 1} id="editable-input" onSubmit={submit}>
                 <input ref={inputRef} 
+                       className=""
                        autoFocus 
                        type="text"
                        placeholder={userText}

@@ -1,5 +1,5 @@
 import { ChangeEvent, FocusEvent, FormEvent, useEffect } from "react";
-
+import './EditableFormElements.css';
 
 export const EditableTextArea = (props: any) => {
     const { editMode, setEditMode, userText, setUserText, inputRef } = props.inherited;
@@ -22,6 +22,9 @@ export const EditableTextArea = (props: any) => {
     const handleKeyEvent = (e: any) => {
         e.preventDefault();
         if(e.key == 'ArrowRight') inputRef.current.value = inputRef.current.placeholder;
+        if (e.key === "Enter" && !e.shiftKey) {
+            submit(e);
+        }
     }
 
     useEffect(() => {
@@ -32,11 +35,12 @@ export const EditableTextArea = (props: any) => {
         
             !editMode 
             ? 
-            <div tabIndex={props.elIndex} onFocus={e => handleFocus(e)} >{userText}</div>
+            <div className="editable-text" tabIndex={props.elIndex} onFocus={e => handleFocus(e)} >{userText}</div>
             : <form tabIndex={props.elIndex + 1} id="editable-input" onSubmit={submit}>
                 <textarea ref={inputRef} 
                        autoFocus 
                        placeholder={userText}
+                       value={userText}
                        onChange={e => updateText(e)} 
                        onKeyUp={handleKeyEvent}
                        />
