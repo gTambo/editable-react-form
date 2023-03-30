@@ -1,30 +1,49 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 
 export const EditableTextField = (props: any) => {
-    const [editMode, setEditMode] = useState(false);
-    const [userText, setUserText] = useState<string>('This is some text');
+    const { editMode, setEditMode, userText, setUserText, inputRef } = props.inherited;
 
-    const updateText = (newText: string) => {
-        setUserText(newText);
+    const updateText = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault();
+        setUserText(e.currentTarget.value);
     }
 
-    const submit = (event: any) => {
+    const handleFocus = (e: React.ChangeEvent<HTMLDivElement>) => {
+        setEditMode(true);
+        setUserText(e.currentTarget.textContent);
+    }
+    // const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     e.preventDefault();
+    //     // setUserText(e.currentTarget.placeholder);
+    //     // setEditMode(false);
+    // }
+
+    const submit = (event: React.FormEvent<HTMLElement>) => {
         event.preventDefault();
         setEditMode(false);
     }
 
     useEffect(() => {
-        
-    }, [userText, editMode]);
+
+    }, [userText, editMode, inputRef]);
 
     return(
-        <>
-            {!editMode ? <div onClick={() => setEditMode(true)}>{userText}</div>
-            : <form id="editable-input" onSubmit={submit}>
-                <input autoFocus type="text"  placeholder={userText} onChange={e => updateText(e.target.value)} />
-            </ form>}
-        </>
+        
+            !editMode 
+            ? 
+            <div tabIndex={props.elIndex} onFocus={e => handleFocus(e)} >{userText}</div>
+            : <form tabIndex={props.elIndex + 1} id="editable-input" onSubmit={submit}>
+                <input ref={inputRef} 
+                       autoFocus 
+                       type="text"
+                    //    defaultValue={userText}
+                       placeholder={userText} 
+                       onChange={e => updateText(e)} 
+                    //    onBlur={e => handleBlur(e)} 
+                       />
+            </ form>
+        
         
     )
 }
