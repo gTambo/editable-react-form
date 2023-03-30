@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react';
 import { EditableTextField } from '../EditableFormElements/TextInput';
 import { EditableTextArea } from '../EditableFormElements/TextArea';
+import './EditableView.css';
 
 export default function ControlView() {
     const [editMode1, setEditMode1] = useState(false);
@@ -61,8 +62,14 @@ export default function ControlView() {
     }
     ];
 
+    const handleBlur = (e: React.MouseEvent) => {
+        e.preventDefault();
+        console.log('Clicked on ', e.currentTarget.id)
+        editAllOff();
+    }
+
     return (
-        <div >
+        <div className='ControlContainer' id="control-container" onClick={handleBlur}>
             <EditableTextField inherited={passable[0]} elIndex={0} />
             <EditableTextField inherited={passable[1]} elIndex={0} />
             <EditableTextArea inherited={passable[2]} elIndex={0} />

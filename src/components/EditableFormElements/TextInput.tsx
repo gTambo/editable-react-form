@@ -16,8 +16,8 @@ export const EditableTextField = (props: any) => {
     }
     // const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
     //     e.preventDefault();
-    //     // setUserText(e.currentTarget.placeholder);
-    //     // setEditMode(false);
+    //     setUserText(e.currentTarget.placeholder);
+    //     setEditMode(false);
     // }
 
     const submit = (event: FormEvent<HTMLFormElement>) => {
