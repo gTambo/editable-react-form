@@ -62,9 +62,8 @@ export default function ControlView() {
     }
     ];
 
-    const handleBlur = (e: React.MouseEvent) => {
+    const handleBlur = (e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
-        console.log('Clicked on ', e.currentTarget.id)
         editAllOff();
     }
 

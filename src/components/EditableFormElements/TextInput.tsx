@@ -14,6 +14,7 @@ export const EditableTextField = (props: any) => {
         setEditMode(true);
         setUserText(e.currentTarget.textContent);
     }
+    
     // const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
     //     e.preventDefault();
     //     setUserText(e.currentTarget.placeholder);
