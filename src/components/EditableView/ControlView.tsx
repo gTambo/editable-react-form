@@ -1,7 +1,8 @@
 // import { EditModeView } from "./EditModeView";
 // import StaticView from "./StaticView";
 import { useRef, useState } from 'react';
-import { EditableTextField } from '../FormElements/EditableTextField';
+import { EditableTextField } from '../EditableFormElements/TextInput';
+import { EditableTextArea } from '../EditableFormElements/TextArea';
 
 export default function ControlView() {
     const [editMode1, setEditMode1] = useState(false);
@@ -64,7 +65,7 @@ export default function ControlView() {
         <div >
             <EditableTextField inherited={passable[0]} elIndex={0} />
             <EditableTextField inherited={passable[1]} elIndex={0} />
-            <EditableTextField inherited={passable[2]} elIndex={0} />
+            <EditableTextArea inherited={passable[2]} elIndex={0} />
             <input type='button' value="Submit All" onClick={submitAll} />
             { editAll ? <input type="button" value="Edit All - Off" onClick={editAllOff} />
             : <input type="button" value="Edit All - On" onClick={editAllOn} /> }
