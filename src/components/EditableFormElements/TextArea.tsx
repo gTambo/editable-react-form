@@ -1,14 +1,9 @@
-import { ChangeEvent, FocusEvent, FormEvent, useEffect, useId } from "react";
+import { FormEvent, useEffect, useId } from "react";
 import './EditableFormElements.css';
 
 export const EditableTextArea = (props: any) => {
     const { editMode, setEditMode, userText, setUserText, inputRef } = props.inherited;
     const id = useId();
-
-    const handleFocus = (e: FocusEvent<HTMLDivElement, Element>) => {
-        setEditMode(true);
-        setUserText(e.currentTarget.textContent);
-    }
 
     const submit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -23,7 +18,7 @@ export const EditableTextArea = (props: any) => {
         }
     }
 
-    useEffect(() => {}, [userText, editMode, inputRef]);
+    useEffect(() => { }, [userText, editMode, inputRef]);
 
     return(
             !editMode 
@@ -31,7 +26,7 @@ export const EditableTextArea = (props: any) => {
             <div data-testid="editableArea" 
                  className="editable-text" 
                  tabIndex={props.elIndex} 
-                 onFocus={e => handleFocus(e)} >
+                 onFocus={e => setEditMode(true)} >
                     {userText}
             </div>
             : 
