@@ -7,7 +7,7 @@ export const EditableTextArea = (props: any) => {
 
     const submit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        setEditMode(false);
+        if(userText != '') setEditMode(false);
     }
 
     const handleKeyEvent = (e: any) => {
@@ -23,14 +23,14 @@ export const EditableTextArea = (props: any) => {
     return(
             !editMode 
             ? 
-            <div data-testid="editableArea" 
+            <div data-testid="editable-area" 
                  className="editable-text" 
                  tabIndex={props.elIndex} 
                  onFocus={e => setEditMode(true)} >
                     {userText}
             </div>
             : 
-            <form tabIndex={props.elIndex + 1} id="editable-text-area" onSubmit={submit}>
+            <form tabIndex={props.elIndex + 1} id="edit-text-area" data-testid="edit-text-area" onSubmit={submit}>
                 <label htmlFor={`${id}-area`}></label>
                 <textarea ref={inputRef}
                        id={`${id}-area`}
@@ -40,6 +40,7 @@ export const EditableTextArea = (props: any) => {
                        value={userText}
                        onChange={e => setUserText(e.currentTarget.value)} 
                        onKeyUp={handleKeyEvent}
+                       required
                        />
             </ form>
     )

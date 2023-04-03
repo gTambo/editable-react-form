@@ -39,7 +39,7 @@ describe('EditableTextField', () => {
         const textField = await screen.findByTestId('editable-input');
         expect(textField).toBeInTheDocument();
     });
-    test('should show an error message if blank', async () => {
+    test('should show not show the text field if blank', async () => {
         let editMode = true;
         const setEditMode = jest.fn();
         const setUserText = jest.fn();
@@ -51,11 +51,11 @@ describe('EditableTextField', () => {
             inputRef: { current: null }
         };
         render(<EditableTextField inherited={passable} elIndex={0} />)
-        const textElement = await screen.getByTestId('editable-input')
+        const textElement = await screen.findByTestId('editable-input')
         userEvent.click(textElement);
         userEvent.keyboard('{ArrowRight}');
         userEvent.keyboard('{Backspace>31}');
         userEvent.keyboard('{Enter}');
-        expect(screen.queryByTestId('error-msg')).toBeInTheDocument();
+        expect(screen.queryByTestId('editable-text')).not.toBeInTheDocument()
     });
 });

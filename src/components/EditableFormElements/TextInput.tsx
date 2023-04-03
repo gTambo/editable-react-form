@@ -5,13 +5,12 @@ import './EditableFormElements.css';
 export const EditableTextField = (props: any) => {
     const { editMode, setEditMode, userText, setUserText, inputRef } = props.inherited;
     const id = useId();
-    const [isEmpty, setIsEmpty] = useState(false);
-
-
 
     const submit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        setEditMode(false);
+        if(userText != ''){
+            setEditMode(false);
+        }
     }
 
     const handleKeyEvent = (e: any) => {
@@ -22,10 +21,8 @@ export const EditableTextField = (props: any) => {
     }
 
     useEffect(() => {
-        if(userText === ''){
-            setIsEmpty(true);
-        } 
-    }, [userText, editMode, inputRef, isEmpty]);
+
+    }, [userText, editMode, inputRef]);
 
     return(
             !editMode 
@@ -49,8 +46,8 @@ export const EditableTextField = (props: any) => {
                        placeholder={userText}
                        onChange={e => setUserText(e.currentTarget.value)} 
                        onKeyUp={handleKeyEvent}
+                       required
                        />
-                       {isEmpty && <p data-testid="error-msg" >text is required</p>}
             </ form>
             
     )

@@ -14,7 +14,7 @@ export type InputProps = {
 }
 
 export default function ControlView() {
-    const [editMode1, setEditMode1] = useState(true);
+    const [editMode1, setEditMode1] = useState(false);
     const [editMode2, setEditMode2] = useState(false);
     const [editMode3, setEditMode3] = useState(false);
     const [editAll, setEditAll] = useState<boolean>(false);
