@@ -1,12 +1,20 @@
 // import { EditModeView } from "./EditModeView";
 // import StaticView from "./StaticView";
-import { useRef, useState } from 'react';
+import { Dispatch, RefObject, SetStateAction, useRef, useState } from 'react';
 import { EditableTextField } from '../EditableFormElements/TextInput';
 import { EditableTextArea } from '../EditableFormElements/TextArea';
 import './EditableView.css';
 
+export type InputProps = {
+    editMode: boolean,
+    setEditMode: Dispatch<SetStateAction<boolean>>,
+    userText: string,
+    setUserText: Dispatch<SetStateAction<string>>,
+    inputRef: RefObject<HTMLElement>
+}
+
 export default function ControlView() {
-    const [editMode1, setEditMode1] = useState(false);
+    const [editMode1, setEditMode1] = useState(true);
     const [editMode2, setEditMode2] = useState(false);
     const [editMode3, setEditMode3] = useState(false);
     const [editAll, setEditAll] = useState<boolean>(false);
@@ -39,7 +47,7 @@ export default function ControlView() {
         editAllOff();
     }
 
-    const passable = [{
+    const passable: InputProps[] = [{
         editMode: editMode1,
         setEditMode: setEditMode1,
         userText: userText1,

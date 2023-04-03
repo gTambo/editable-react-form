@@ -1,10 +1,13 @@
-import { FormEvent, useEffect, useId } from "react";
+import { FormEvent, useEffect, useId, useState } from "react";
 import './EditableFormElements.css';
 
 
 export const EditableTextField = (props: any) => {
     const { editMode, setEditMode, userText, setUserText, inputRef } = props.inherited;
     const id = useId();
+    const [isEmpty, setIsEmpty] = useState(false);
+
+
 
     const submit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -14,16 +17,22 @@ export const EditableTextField = (props: any) => {
     const handleKeyEvent = (e: any) => {
         e.preventDefault();
         if(e.key == 'ArrowRight') inputRef.current.value = inputRef.current.placeholder;
+        else console.log(e.key);
+        
     }
 
-    useEffect(() => { }, [userText, editMode, inputRef]);
+    useEffect(() => {
+        if(userText === ''){
+            setIsEmpty(true);
+        } 
+    }, [userText, editMode, inputRef, isEmpty]);
 
     return(
-        
             !editMode 
             ? 
             <div id={`${id}-editableText`} 
-                 className="editable-text" 
+                 className="editable-text"
+                 data-testid="editable-text" 
                  tabIndex={props.elIndex} 
                  onFocus={e => setEditMode(true)} >
                     {userText}
@@ -33,7 +42,7 @@ export const EditableTextField = (props: any) => {
                 <label htmlFor={`${id}-input`}></label>
                 <input ref={inputRef} 
                        id={`${id}-input`}
-                       data-testid="editableInput"
+                       data-testid="editable-input"
                        className=""
                        autoFocus 
                        type="text"
@@ -41,8 +50,8 @@ export const EditableTextField = (props: any) => {
                        onChange={e => setUserText(e.currentTarget.value)} 
                        onKeyUp={handleKeyEvent}
                        />
+                       {isEmpty && <p data-testid="error-msg" >text is required</p>}
             </ form>
-        
-        
+            
     )
 }
