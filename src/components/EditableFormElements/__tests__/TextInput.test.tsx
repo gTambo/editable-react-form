@@ -39,6 +39,8 @@ describe('EditableTextField', () => {
         userEvent.keyboard('{ArrowRight}');
         userEvent.keyboard('{Backspace>31}');
         userEvent.keyboard('{Enter}');
+        // this works for the wrong reason - the mocked jest funtions do not update the state,
+        // so the following assertion will be ALWAYS be true for this spec 
         expect(screen.queryByTestId('editable-text')).not.toBeInTheDocument()
         expect(screen.queryByTestId('editable-input')).toBeInTheDocument();
     });
@@ -52,14 +54,14 @@ describe('EditableTextField', () => {
         passable.editMode = true;
         passable.userText = 'Click here and type some text'
         render(<EditableTextField inherited={passable} elIndex={0} />);
-        // const textElement = await screen.findByTestId('editable-text')
         const inputField = await screen.findByTestId('editable-input') as HTMLInputElement;
+        userEvent.click(inputField);
+        userEvent.keyboard('yo, whaddup.');
+        userEvent.keyboard('{Enter}');
+        expect(screen.getByDisplayValue('yo, whaddup.')).toBeInTheDocument();
+        /*Aternate method of doing a similar thing. */
         fireEvent.change(inputField, 
         { target: { value: 'hiya back buddy!'},});
-        // Aternate method of doing the same thing.
-        // userEvent.click(inputField);
-        // userEvent.keyboard('hiya back buddy!');
-        // userEvent.keyboard('{Enter}');
         expect(screen.getByDisplayValue('hiya back buddy!')).toBeInTheDocument();
     });
 });
