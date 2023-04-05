@@ -1,0 +1,11 @@
+{
+  "cSpell.words": ["formik"],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "eslint.alwaysShowStatus": true,
+  // tell the ESLint plugin to run on save
+  "editor.codeActionsOnSave": {
+    "source.fixAll": false
+  },
+  "eslint.validate": ["typescript", "typescriptreact"]
+}
