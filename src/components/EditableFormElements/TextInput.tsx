@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useId, useState } from "react";
+import { FormEvent, useEffect, useId } from "react";
 import './EditableFormElements.css';
 
 
@@ -8,14 +8,14 @@ export const EditableTextField = (props: any) => {
 
     const submit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        if(userText != ''){
+        if(userText !== ''){
             setEditMode(false);
         }
     }
 
     const handleKeyEvent = (e: any) => {
         e.preventDefault();
-        if(e.key == 'ArrowRight') inputRef.current.value = inputRef.current.placeholder;
+        if(e.key === 'ArrowRight') inputRef.current.value = inputRef.current.placeholder;
         else console.log(e.key);
         
     }
@@ -24,9 +24,9 @@ export const EditableTextField = (props: any) => {
 
     }, [userText, editMode, inputRef]);
 
-    return(
-            !editMode 
-            ? 
+    return !editMode ? (
+             
+            
             <div id={`${id}-editableText`} 
                  className="editable-text"
                  data-testid="editable-text" 
@@ -34,7 +34,7 @@ export const EditableTextField = (props: any) => {
                  onFocus={e => setEditMode(true)} >
                     {userText}
             </div>
-            : 
+            ) : (
             <form tabIndex={props.elIndex + 1} id="editable-input" onSubmit={submit}>
                 <label htmlFor={`${id}-input`}></label>
                 <input ref={inputRef} 

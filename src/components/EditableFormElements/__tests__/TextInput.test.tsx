@@ -42,13 +42,13 @@ describe('EditableTextField', () => {
         // this works for the wrong reason - the mocked jest funtions do not update the state,
         // so the following assertion will be ALWAYS be true for this spec 
         expect(screen.queryByTestId('editable-text')).not.toBeInTheDocument()
-        expect(screen.queryByTestId('editable-input')).toBeInTheDocument();
+        expect(screen.getByTestId('editable-input')).toBeInTheDocument();
     });
     test("should initialize with 'hiya buddy!' when passed 'hiya buddy!'", async () => {
         passable.editMode = false;
         passable.userText = 'hiya buddy!'
         render(<EditableTextField inherited={passable} elIndex={0} />)
-        expect(screen.queryByText('hiya buddy!')).toBeInTheDocument();
+        expect(screen.getByText('hiya buddy!')).toBeInTheDocument();
     });
     test("should show 'hiya back buddy!' when entered into field", async () => {
         passable.editMode = true;

@@ -7,12 +7,12 @@ export const EditableTextArea = (props: any) => {
 
     const submit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        if(userText != '') setEditMode(false);
+        if(userText !== '') setEditMode(false);
     }
 
     const handleKeyEvent = (e: any) => {
         e.preventDefault();
-        if(e.key == 'ArrowRight') inputRef.current.value = inputRef.current.placeholder;
+        if(e.key === 'ArrowRight') inputRef.current.value = inputRef.current.placeholder;
         if (e.key === "Enter" && !e.shiftKey) {
             submit(e);
         }
